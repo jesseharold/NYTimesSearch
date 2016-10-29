@@ -1,0 +1,23 @@
+.container {
+	font-family: "Times New Roman";
+}
+.input-group {
+	width: 100%;
+}
+.container .panel-heading, .container .jumbotron {
+	background-color: #711212;
+	color: white;
+}
+.container .panel-heading {
+	font-size: 30px;
+}
+.container h3 {
+	font-weight: bold;
+}
+.container button {
+	background-color: #bbb;
+}
+.panel h3 {
+	font-family: "arial", "sans-serif";
+	font-weight: normal;
+}
