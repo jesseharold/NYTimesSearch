@@ -7,7 +7,7 @@ var endDate = $("#endYear").val();
 
 	var recordsLimit = 5;
 	
-url += '?' + $.param({
+searchURL += '?' + $.param({
     'api-key': key,
     'q': keyword,
     'begin_date': startDate,
