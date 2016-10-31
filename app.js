@@ -25,30 +25,31 @@ function onSubmit(){
 	  method: "GET"
 	})
 	.done(function(result) {
-	  	console.log();
-	  	if (result.response.length <= recordsLimit){
-	  		console.log("Not enough articles found: "+result.response.length);
+		var loops = recordsLimit;
+	  	if (result.response.docs.length === 0){
+	  		console.log("No articles found");
 	  	} else {
-		    for (var i = 0; i < recordsLimit; i++){
+	  		if (result.response.docs.length < recordsLimit){
+	  			loops = result.response.docs.length;
+	  		}
+
+		    for (var i = 0; i < loops; i++){
 			    var articleNum = "article" + i;
 				console.log(articleNum);
 				
-				var article = $("<div/>");	
+				var article = $("<div>");	
 			    article.attr("id", articleNum);
-				article.attr("class", "newsarticle");
+				article.addClass("well").addClass("result");
 					
 				var currentArticle = result.response.docs[i];	
-			    var articleSection = $(currentArticle).attr("section_name");
-					
-			    var headline = currentArticle.headline.main;
-					
-				var sectionType = $(currentArticle).attr("section_name");
+
+			    var headline = "<h3 class='title'>" + currentArticle.headline.main + "</h3>";
+			    var articleSection = "<div>" + currentArticle.section_name + "</div>";
+				var byline = "<div>" + currentArticle.byline + "</div>";
+				var publishDate = "<div>" + currentArticle.pub_date + "</div>";
+			    var articleURL = "<div>" + currentArticle.web_url + "</div>";
 			    
-				var byline = currentArticle.byline.original;
-				var publishDate = $(currentArticle).attr("pub_date");
-			    var articleURL = $(currentArticle).attr("web_url");    
-			    
-				$(article).html(headline + "<br>" + sectionType);
+				article.append(headline).append(articleSection).append(byline).append(publishDate).append(articleURL);
 				$("#results").append(article);
 			}
 		}
