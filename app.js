@@ -35,7 +35,6 @@ function onSubmit(){
 
 		    for (var i = 0; i < loops; i++){
 			    var articleNum = "article" + i;
-				console.log(articleNum);
 				
 				var article = $("<div>");	
 			    article.attr("id", articleNum);
@@ -44,12 +43,12 @@ function onSubmit(){
 				var currentArticle = result.response.docs[i];	
 
 			    var headline = "<h3 class='title'>" + currentArticle.headline.main + "</h3>";
-			    var articleSection = "<div>" + currentArticle.section_name + "</div>";
-				var byline = "<div>" + currentArticle.byline + "</div>";
-				var publishDate = "<div>" + currentArticle.pub_date + "</div>";
-			    var articleURL = "<div>" + currentArticle.web_url + "</div>";
+			    var articleSection = "<div class='section'" + currentArticle.section_name + "</div>";
+				var byline = "<div class='byline'>" + currentArticle.byline.original + "</div>";
+				var publishDate = "<div class='date'>" + currentArticle.pub_date + "</div>";
+			    var articleURL = "<div class='articleUrl'>" + currentArticle.web_url + "</div>";
 			    
-				article.append(headline).append(articleSection).append(byline).append(publishDate).append(articleURL);
+				article.append(headline).append(byline).append(publishDate).append(articleSection).append(articleURL);
 				$("#results").append(article);
 			}
 		}
